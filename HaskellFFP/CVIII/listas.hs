@@ -92,21 +92,15 @@ generarAcronimo :: String -> String
 generarAcronimo xs = [x | x <- xs, elem x ['A'..'Z']]
 
 -------------------------
---Ordena tres secciones de una lista (nros < 50, entre 50 y 100, >100)
-tresSecc :: [Int] -> [Int] 
-tresSecc [] = []
-tresSecc (x:xs) = bucket1 ++ bucket2 ++ bucket3 
-                where
-                    next = tresSecc xs
-                    bucket1 = case x < 50 of
-                        True -> x : next
-                        False -> []
-                    bucket2 = case x > 100 of
-                        True -> x : next
-                        False -> []
-                    bucket3 = case x >= 50 && x <= 100 of
-                        True -> x : next
-                        False -> []
 
-             
+filter' :: (a -> Bool) -> [a] -> [a]
+filter' _ [] = []             
+filter' pred (x:xs)
+    | pred x = x : filter pred xs
+    | otherwise = filter pred xs
 
+multiplos3 :: [Int]
+multiplos3 = filter (\x -> mod x 3 == 0) [1..30]
+
+cantMultiplos3 :: Int
+cantMultiplos3 = length $ filter (\x -> mod x 3 == 0) [1..30]
