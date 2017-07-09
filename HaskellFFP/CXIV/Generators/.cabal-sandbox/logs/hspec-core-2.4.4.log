@@ -1,0 +1,31 @@
+Configuring hspec-core-2.4.4...
+Building hspec-core-2.4.4...
+Preprocessing library hspec-core-2.4.4...
+[ 1 of 22] Compiling Paths_hspec_core ( dist/dist-sandbox-3eb85224/build/autogen/Paths_hspec_core.hs, dist/dist-sandbox-3eb85224/build/Paths_hspec_core.o )
+[ 2 of 22] Compiling Test.Hspec.Core.Timer ( src/Test/Hspec/Core/Timer.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Timer.o )
+[ 3 of 22] Compiling Data.Algorithm.Diff ( vendor/Data/Algorithm/Diff.hs, dist/dist-sandbox-3eb85224/build/Data/Algorithm/Diff.o )
+[ 4 of 22] Compiling Test.Hspec.Core.Formatters.Diff ( src/Test/Hspec/Core/Formatters/Diff.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Formatters/Diff.o )
+[ 5 of 22] Compiling Test.Hspec.Core.Compat ( src/Test/Hspec/Core/Compat.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Compat.o )
+[ 6 of 22] Compiling Test.Hspec.Core.Util ( src/Test/Hspec/Core/Util.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Util.o )
+[ 7 of 22] Compiling Test.Hspec.Core.QuickCheckUtil ( src/Test/Hspec/Core/QuickCheckUtil.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/QuickCheckUtil.o )
+[ 8 of 22] Compiling Test.Hspec.Core.Formatters.Free ( src/Test/Hspec/Core/Formatters/Free.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Formatters/Free.o )
+[ 9 of 22] Compiling Test.Hspec.Core.Example ( src/Test/Hspec/Core/Example.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Example.o )
+[10 of 22] Compiling Test.Hspec.Core.Tree ( src/Test/Hspec/Core/Tree.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Tree.o )
+[11 of 22] Compiling Test.Hspec.Core.Spec.Monad ( src/Test/Hspec/Core/Spec/Monad.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Spec/Monad.o )
+[12 of 22] Compiling Test.Hspec.Core.Hooks ( src/Test/Hspec/Core/Hooks.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Hooks.o )
+[13 of 22] Compiling Test.Hspec.Core.Spec ( src/Test/Hspec/Core/Spec.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Spec.o )
+[14 of 22] Compiling Test.Hspec.Core.Formatters.Monad ( src/Test/Hspec/Core/Formatters/Monad.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Formatters/Monad.o )
+[15 of 22] Compiling Test.Hspec.Core.Formatters ( src/Test/Hspec/Core/Formatters.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Formatters.o )
+[16 of 22] Compiling Test.Hspec.Core.Options ( src/Test/Hspec/Core/Options.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Options.o )
+[17 of 22] Compiling Test.Hspec.Core.FailureReport ( src/Test/Hspec/Core/FailureReport.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/FailureReport.o )
+[18 of 22] Compiling Test.Hspec.Core.Config ( src/Test/Hspec/Core/Config.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Config.o )
+[19 of 22] Compiling Test.Hspec.Core.Formatters.Internal ( src/Test/Hspec/Core/Formatters/Internal.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Formatters/Internal.o )
+[20 of 22] Compiling Test.Hspec.Core.Runner.Eval ( src/Test/Hspec/Core/Runner/Eval.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Runner/Eval.o )
+[21 of 22] Compiling Test.Hspec.Core.Runner ( src/Test/Hspec/Core/Runner.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/Runner.o )
+[22 of 22] Compiling Test.Hspec.Core.QuickCheck ( src/Test/Hspec/Core/QuickCheck.hs, dist/dist-sandbox-3eb85224/build/Test/Hspec/Core/QuickCheck.o )
+In-place registering hspec-core-2.4.4...
+Creating package registration file:
+/tmp/pkgConf-hspec-core-2.417345751981973594324.4
+Installing library in
+/home/andres/GitHub/WYaS-Haskell/HaskellFFP/CXIV/Generators/.cabal-sandbox/lib/x86_64-linux-ghc-7.10.3/hspec-core-2.4.4-FSN7u43kUk4FSmGRHB8Boh
+Registering hspec-core-2.4.4...

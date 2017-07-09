@@ -3,6 +3,11 @@ module QTestCheck where
 import Test.QuickCheck
 import Test.Hspec
 import Data.List (sort)
+import Data.Char
+
+capitalizeWord :: String -> String
+capitalizeWord "" = ""
+capitalizeWord (x:xs) = toUpper x : xs
 
 --------------
 half :: Float -> Float
@@ -43,7 +48,11 @@ reverseSquared xs = (reverse . reverse) xs == xs
 
 --------------
 application_id f g x =
-    (f $ g $ x) == f(g x) && (f $ g $ x) == (f. g $ x)
+    (f $ g $ x) == f (g x) && (f $ g $ x) == (f . g $ x)
+
+--------------
+twice f = f . f
+fourTimes = twice . twice
 
 
 main :: IO ()
@@ -69,3 +78,7 @@ main = hspec $ do
             property (\xs -> reverseSquared (xs::[Char]))
         it "associativity of ($)" $ do
             property (\x -> application_id (+2) (+1) (x :: Int))
+        it "idempotence of capitalizeWord" $ do
+            property (\cs -> (twice capitalizeWord $ cs) == (fourTimes capitalizeWord $ (cs :: String)))
+        it "idempotence of sort" $ do
+            property (\xs -> (twice sort $ xs) == (fourTimes sort $ (xs::[Int])))
