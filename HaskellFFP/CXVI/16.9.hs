@@ -2,6 +2,7 @@
 
 import Test.QuickCheck
 import Test.QuickCheck.Function
+import Control.Monad
 
 functorIdentity :: (Functor f, Eq (f a)) => f a -> Bool
 functorIdentity f = fmap id f == f
@@ -68,17 +69,92 @@ instance (Arbitrary a, Arbitrary b, Arbitrary c) => Arbitrary (Three a b c) wher
 data Sum a b =  First a | Second b deriving (Eq, Show)
 
 instance Functor (Sum a) where
-    fmap _ (First a) = First b
+    fmap _ (First a) = First a
     fmap f (Second b) = Second $ f b
 
+instance (Arbitrary a, Arbitrary b) => Arbitrary (Sum a b) where
+  arbitrary = do
+    a <- arbitrary
+    b <- arbitrary
+    elements [First a, Second b]
 
 
+--------------
+data LiftItOut f a = LiftItOut (f a) deriving (Eq, Show)
 
-    
+instance Functor f => Functor (LiftItOut f) where
+  fmap f (LiftItOut fa) = LiftItOut (fmap f fa)
+
+
+--------------
+data IgnoreOne f g a b =
+  IgnoringSomething (f a) (g b) deriving (Eq, Show)
+
+instance Functor g => Functor (IgnoreOne f g a) where
+  fmap f (IgnoringSomething fa gb) = IgnoringSomething fa (fmap f gb) 
+
+
+--------------
+data Parappa f g a =
+  DaWrappa (f a) (g a) deriving (Eq, Show)
+
+instance (Functor f, Functor g) => Functor (Parappa f g) where
+  fmap f (DaWrappa fa ga) = DaWrappa (fmap f fa) (fmap f ga)  
+
+
+--------------
+data Notorious g o a t =
+  Notorious (g o) (g a) (g t)
+
+instance Functor g => Functor (Notorious g o a) where
+  fmap f (Notorious go ga gt) = Notorious go ga $ fmap f gt
+
+
+--------------
+data List a = Nil | Cons a (List a) deriving (Eq, Show)
+
+instance Functor List where
+  fmap _ Nil = Nil
+  fmap f (Cons x xs) = Cons (f x) (fmap f xs)
+
+instance Arbitrary a => Arbitrary (List a) where
+  arbitrary = oneof [return Nil, liftM2 Cons arbitrary arbitrary]
+
+
+--------------
+data GoatLord a = NoGoat
+                | OneGoat a
+                | MoreGoats (GoatLord a) (GoatLord a) (GoatLord a)
+                deriving (Eq, Show)
+
+instance Functor GoatLord where
+  fmap _ NoGoat = NoGoat
+  fmap f (OneGoat a) = OneGoat (f a)
+  fmap f (MoreGoats a b c) = MoreGoats (fmap f a) (fmap f b) (fmap f c)
+
+instance Arbitrary a => Arbitrary (GoatLord a) where
+  arbitrary = oneof [return NoGoat
+                    , liftM OneGoat arbitrary
+                    , liftM3 MoreGoats arbitrary arbitrary arbitrary 
+                    ]
+
+--------------
+data TalkToMe a = Halt
+                | Print String a
+                | Read (String -> a)
+                
+
+instance Functor TalkToMe where
+  fmap _ Halt = Halt
+  fmap f (Print s a) = Print s (f a)
+  fmap f (Read sa) = Read (f . sa)
+
+
 main = do
     quickCheck  (\x -> functorIdentity (x :: Identity Int))
     quickCheck (functorCompose' :: IntFC)
     quickCheck (\x -> functorIdentity (x :: Pair String))
     quickCheck (\x -> functorIdentity (x :: Three Int String Bool))
-
-
+    quickCheck (\x -> functorIdentity (x :: Sum String String))
+    quickCheck (\x -> functorIdentity (x :: List String))
+    quickCheck (\x -> functorIdentity (x :: GoatLord String))
