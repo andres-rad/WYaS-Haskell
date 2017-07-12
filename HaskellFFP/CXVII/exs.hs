@@ -101,3 +101,97 @@ instance Applicative (Sum b) where
     (<*>) (First a) _ = (First a)
     (<*>) _ (First a) = (First a)
     (<*>) (Second f) (Second b) = Second $ f b
+
+
+--------------
+newtype Identity a = Identity a deriving Show
+
+instance Functor Identity where
+    fmap f (Identity a) = Identity $ f a
+
+instance Applicative Identity where
+    pure = Identity
+    (<*>) (Identity f) (Identity a) = Identity $ f a
+
+
+--------------
+data Pair a = Pair a a deriving Show
+
+instance Functor Pair where
+    fmap f (Pair a b) = Pair (f a) (f b)
+
+instance Applicative Pair where
+    pure a = Pair a a
+    (<*>) (Pair f g) (Pair a b) = Pair (f a) (g b)
+
+
+--------------
+data Two a b = Two a b
+
+instance Functor (Two a) where
+    fmap f (Two a b) = Two a $ f b
+
+instance Monoid a => Applicative (Two a) where
+    pure = Two mempty
+    (<*>) (Two a f) (Two a' b) = Two (a <> a') (f b) 
+
+
+--------------
+data Three a b c = Three a b c
+
+instance Functor (Three a b) where
+    fmap f (Three a b c) = Three a b $ f c
+
+instance (Monoid a, Monoid b) => Applicative (Three a b) where
+    pure = Three mempty mempty
+    (<*>) (Three u v f) (Three a b c) = Three (u <> a) (v <> b) (f c)
+
+--------------
+data Three' a b = Three' a b b deriving (Eq, Show)
+
+instance Functor (Three' a) where
+    fmap f (Three' a b b') = Three' a (f b) (f b')
+
+instance Monoid a => Applicative (Three' a) where
+    pure b = Three' mempty b b
+    (<*>) (Three' u f g) (Three' a b b') = Three' (u <> a) (f b) (g b')
+
+--------------
+data Four a b c d = Four a b c d
+
+instance Functor (Four a b c) where
+    fmap f (Four a b c d) = Four a b c $ f d
+
+instance (Monoid a, Monoid b, Monoid c) => Applicative (Four a b c) where
+    pure = Four mempty mempty mempty
+    (<*>) (Four u v w f) (Four a b c d) = Four (u <> a) (v <> b) (w <> c) (f d)
+
+
+--------------
+data Four' a b = Four' a a a b
+
+instance Functor (Four' a) where
+    fmap f (Four' u v w b) = Four' u v w $ f b
+
+instance Monoid a => Applicative (Four' a) where
+    pure = Four' mempty mempty mempty
+    (<*>) (Four' u v w f) (Four' x y z b) = Four' (u <> x) (v <> y) (w <> y) (f b)
+
+--------------
+stops, vowels :: String
+stops = "pbtdkg"
+vowels = "aeiou"
+
+combos :: [a] -> [b] -> [c] -> [(a, b, c)]
+combos = liftA3 (,,)
+
+showCombos :: [(Char, Char, Char)] -> [String]
+showCombos [] = []
+showCombos ((c1,c2,c3):cs) = [c1,c2,c3]:(showCombos cs)
+
+ioCombos :: [String] -> IO ()
+ioCombos [] = return ()
+ioCombos (c:cs) = putStrLn c >> ioCombos cs
+
+comb :: [String]
+comb = showCombos $ combos stops vowels stops
