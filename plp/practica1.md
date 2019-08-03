@@ -1,5 +1,79 @@
 # Práctica 1 - Programación Funcional - Soluciones
 
+- [Práctica 1 - Programación Funcional - Soluciones](#pr%c3%a1ctica-1---programaci%c3%b3n-funcional---soluciones)
+  - [Ejercicio 1](#ejercicio-1)
+    - [I.](#i)
+    - [II.](#ii)
+  - [Ejercicio 2](#ejercicio-2)
+    - [I.](#i-1)
+    - [II.](#ii-1)
+    - [III.](#iii)
+  - [Ejercicio 3](#ejercicio-3)
+  - [Ejercicio 4](#ejercicio-4)
+  - [Ejercicio 5](#ejercicio-5)
+  - [Ejercicio 6](#ejercicio-6)
+  - [Ejercicio 7](#ejercicio-7)
+  - [Ejercicio 8](#ejercicio-8)
+  - [Ejercicio 9](#ejercicio-9)
+    - [I](#i)
+    - [II](#ii)
+    - [III](#iii)
+  - [Ejercicio 10](#ejercicio-10)
+    - [I](#i-1)
+    - [II](#ii-1)
+    - [III](#iii-1)
+    - [IV](#iv)
+    - [V](#v)
+  - [Ejercicio 11](#ejercicio-11)
+    - [I](#i-2)
+    - [II](#ii-2)
+    - [III](#iii-2)
+  - [Ejercicio 12](#ejercicio-12)
+    - [a](#a)
+    - [b](#b)
+    - [c](#c)
+  - [Ejercicio 13](#ejercicio-13)
+  - [Ejercicio 14](#ejercicio-14)
+    - [I](#i-3)
+    - [II](#ii-3)
+    - [III](#iii-3)
+  - [Ejercicio 15](#ejercicio-15)
+    - [I](#i-4)
+    - [II](#ii-4)
+  - [Ejercicio 16](#ejercicio-16)
+    - [I](#i-5)
+    - [II](#ii-5)
+    - [III](#iii-4)
+    - [IV](#iv-1)
+  - [Ejercicio 17](#ejercicio-17)
+    - [I](#i-6)
+    - [II](#ii-6)
+  - [Ejercicio 18](#ejercicio-18)
+  - [Ejercicio 19](#ejercicio-19)
+    - [I](#i-7)
+    - [II](#ii-7)
+    - [III](#iii-5)
+    - [IV](#iv-2)
+    - [V](#v-1)
+  - [Ejercicio 20](#ejercicio-20)
+    - [I](#i-8)
+    - [II](#ii-8)
+    - [III](#iii-6)
+    - [IV](#iv-3)
+  - [Ejercicio 21](#ejercicio-21)
+    - [I](#i-9)
+    - [II](#ii-9)
+  - [Ejercicio 22](#ejercicio-22)
+    - [I](#i-10)
+    - [II](#ii-10)
+    - [III](#iii-7)
+  - [Ejercicio 23](#ejercicio-23)
+    - [I](#i-11)
+    - [II](#ii-11)
+    - [III](#iii-8)
+      - [a](#a-1)
+      - [b](#b-1)
+      - [c](#c-1)
 ## Ejercicio 1
 
 ### I.
@@ -714,16 +788,22 @@ hojas = foldRT fRT
     where
         fRT v [] = [v]
         fRT v xs = concat xs
+```
 
+#### b
+
+```haskell
 distancias :: RoseTree a -> [Integer]
 distancias = foldRT fRT
     where 
         fRT _ [] = [0]
         fRT a distanciasHijos = map (+1) $ concat distanciasHijos
-
+```
+#### c
+```haskell
 altura :: RoseTree a -> Integer
 altura = foldRT fRT
     where
         fRT _ [] = 0
-        fRT a alturasHijos = 1 + (maximum alturasHijos)
+        fRT a alturasHijos = 1 + (maximum alturasHijos)- [Práctica 1 - Programación Funcional - Soluciones](#pr%c3%a1ctica-1---programaci%c3%b3n-funcional---soluciones)
 ```
